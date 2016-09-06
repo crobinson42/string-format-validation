@@ -1,3 +1,8 @@
+[![JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+[![Mom Made Pizza Rolls](http://forthebadge.com/images/badges/mom-made-pizza-rolls.svg)]
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![Does Not Contain MSG](http://forthebadge.com/images/badges/does-not-contain-msg.svg)]
+
 # string-format-validation
 Javascript library to format &amp; validate strings (or Numbers)
 

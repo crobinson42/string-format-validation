@@ -4,12 +4,7 @@ const Mask = require('string-mask')
 const StringFormatValidation = (rules, val) => {
   const __validArgs = __validateArguments(rules, val)
   if (__validArgs) {
-    try {
-      console.error(new Error(__validArgs))
-    } catch (e) {
-      return new Error(__validArgs)
-    }
-    return
+    throw new Error(__validArgs)
   }
 
   let returnVal
@@ -117,7 +112,7 @@ const _format = StringFormatValidation.format = (format, string) => {
 /**
  * Export Our Function
  */
-export default StringFormatValidation
+module.exports = StringFormatValidation
 
 const __validateArguments = (rules, val) => {
   let invokationError = null
