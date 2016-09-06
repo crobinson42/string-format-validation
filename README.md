@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/crobinson42/string-format-validation.svg?branch=master)](https://travis-ci.org/crobinson42/string-format-validation)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![npm version](https://badge.fury.io/js/string-format-validation.svg)](https://badge.fury.io/js/string-format-validation)
 
 [![forthebadge](http://forthebadge.com/images/badges/mom-made-pizza-rolls.svg)](http://forthebadge.com)
 
