@@ -1,6 +1,7 @@
+[![npm version](https://badge.fury.io/js/string-format-validation.svg)](https://badge.fury.io/js/string-format-validation)
 [![Build Status](https://travis-ci.org/crobinson42/string-format-validation.svg?branch=master)](https://travis-ci.org/crobinson42/string-format-validation)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-[![npm version](https://badge.fury.io/js/string-format-validation.svg)](https://badge.fury.io/js/string-format-validation)
+[![Code Climate](https://codeclimate.com/github/crobinson42/string-format-validation/badges/gpa.svg)](https://codeclimate.com/github/crobinson42/string-format-validation)
 
 [![forthebadge](https://img.shields.io/badge/Node.js-v4-yellow.svg)](http://nodejs.org)
 [![forthebadge](https://img.shields.io/badge/Node.js-v6-orange.svg)](http://nodejs.org)
