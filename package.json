@@ -1,16 +1,16 @@
 {
   "name": "string-format-validation",
-  "version": "1.0.3",
   "description": "Javascript util library to format & validate strings (or Numbers)",
   "main": "dist/bundle.js",
   "scripts": {
     "test": "standard src/**/* && mocha test/",
     "dev": "webpack-dev-server --config webpack.dev.config.js --content-base dev/ --hot --inline",
-    "build": "npm test && babel src/index.js --out-file dist/bundle.js"
+    "build": "npm test && babel src/index.js --out-file dist/bundle.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/crobinson42/string-format-validation.git"
+    "url": "https://github.com/crobinson42/string-format-validation.git"
   },
   "keywords": [
     "string",
@@ -38,7 +38,8 @@
     "string-mask": "^0.3.0",
     "validator": "^5.6.0",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.1"
+    "webpack-dev-server": "^1.15.1",
+    "semantic-release": "^4.3.5"
   },
   "standard": {
     "globals": [
