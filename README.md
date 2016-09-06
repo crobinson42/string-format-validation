@@ -2,8 +2,10 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![npm version](https://badge.fury.io/js/string-format-validation.svg)](https://badge.fury.io/js/string-format-validation)
 
-[![forthebadge](http://forthebadge.com/images/badges/mom-made-pizza-rolls.svg)](http://forthebadge.com)
+[![forthebadge](https://img.shields.io/badge/Node.js-v4-yellow.svg)](http://nodejs.org)
+[![forthebadge](https://img.shields.io/badge/Node.js-v6-orange.svg)](http://nodejs.org)
 
+[![forthebadge](https://img.shields.io/badge/Mom%20Made-Pizza%20Rolls-blue.svg)](http://pizza.com)
 
 
 # string-format-validation
