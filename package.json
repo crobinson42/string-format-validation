@@ -1,6 +1,6 @@
 {
   "name": "string-format-validation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Javascript util library to format & validate strings (or Numbers)",
   "main": "dist/bundle.js",
   "scripts": {
@@ -41,7 +41,10 @@
     "webpack-dev-server": "^1.15.1"
   },
   "standard": {
-    "globals": [ "describe", "it" ]
+    "globals": [
+      "describe",
+      "it"
+    ]
   },
   "homepage": "https://github.com/crobinson42/string-format-validation#readme"
 }
