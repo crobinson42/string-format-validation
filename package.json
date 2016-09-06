@@ -16,9 +16,12 @@
     "string",
     "format",
     "mask",
+    "string-mask",
+    "validator.js",
     "validate",
     "input",
-    "number"
+    "number",
+    "react"
   ],
   "author": "coryrobinson42@gmail.com",
   "license": "MIT",

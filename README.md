@@ -2,7 +2,9 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 [![forthebadge](http://forthebadge.com/images/badges/mom-made-pizza-rolls.svg)](http://forthebadge.com)
-[![forthebadge](http://forthebadge.com/images/badges/built-by-neckbeards.svg)](http://forthebadge.com)
+
+[![forthebadge](http://forthebadge.com/images/badges/uses-badges.svg)](http://forthebadge.com)
+
 [![forthebadge](http://forthebadge.com/images/badges/fuck-it-ship-it.svg)](http://forthebadge.com)
 
 # string-format-validation
@@ -90,11 +92,19 @@ console.log( StringFormatValidation(rules, userInputs) )
 // { name: true, email: false, phone: { valid: true, format: '(916) 616 - 3600'}}
 ```
 
-## Rules
+## Validation
 Available rules: (*Please open an issue to request a specific rule*)
 
 `min` {integer} // minimum length
+
 `max` {integer} // max length
+
+*Note- to enforce max char and return a value that is limited to the max, ie: let this module do the work of not letting the string be greater than the `max`, use `enforce: true`*
+
+*The response will be an object instead of a boolean validation status*
+
+`enforce` {boolean} // defaults to false
+
 `size` {integer} // exact length
 
 `type`
@@ -108,13 +118,13 @@ Rules must be in Object structure:
 
 ```js
 {
-  min: 1,
-  max: 30
+  min: 1, // min characters allowed
+  max: 30 // max characters allowed
 }
 
 {
   size: 10,
-  type: 'phone'
+  type: 'phone' // any of the listed 'types' above
 }
 ```
 
