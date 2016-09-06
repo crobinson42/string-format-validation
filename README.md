@@ -128,3 +128,27 @@ Rules must be in Object structure:
 ```
 
 ## Format
+
+You can use Special Characters for your format needs.
+
+```js
+import StringFormatValidation from 'string-format-validation'
+
+const userInput = '9166163600'
+const format = '(###) ### - ####'
+const formattedInput = StringFormatValidation.format(format, userInput)
+
+console.log(formattedInput) // (916) 616 - 3600
+```
+
+Character | Description
+--- | ---
+`0` | Any numbers
+`9` | Any numbers (Optional)
+`#` | Any numbers (recursive)
+`A` | Any alphanumeric character
+`a` | Any alphanumeric character (Optional) __Not implemented yet__
+`S` | Any letter
+`U` | Any letter (All lower case character will be mapped to uppercase)
+`L` | Any letter (All upper case character will be mapped to lowercase)
+`$` | Escape character, used to escape any of the special formatting characters.
