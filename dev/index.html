@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Webpack Dev Server</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  </head>
+  <body>
+    <div id="app">
+
+    </div>
+    <script type="text/javascript" src="assets/bundle.js"></script>
+  </body>
+  <script type="text/javascript">
+    window.onload = () => {
+      if (typeof(SFV) !== 'undefined') {
+        document.querySelector('#app').innerHTML = 'string-format-validation has loaded! Open the console to use the module available globally window.SFV'
+      } else {
+        document.querySelector('#app').innerHTML = '<span style="color:red;">string-format-validation failed to load</span>'
+      }
+    }
+  </script>
+</html>
