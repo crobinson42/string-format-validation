@@ -1,9 +1,146 @@
-'use strict';var _typeof=typeof Symbol==='function'&&typeof Symbol.iterator==='symbol'?function(obj){return typeof obj}:function(obj){return obj&&typeof Symbol==='function'&&obj.constructor===Symbol?'symbol':typeof obj},_validator=require('validator'),Mask=require('string-mask'),StringFormatValidation=function StringFormatValidation(f,g){var b=__validateArguments(f,g);if(b){throw new Error(b)}var c=void 0;// if val is an obj iterate it's keys and look for matching rules
-if((typeof g==='undefined'?'undefined':_typeof(g))==='object'){c={};for(var d in g){c[d]=a(f[d],g[d])}}else{c=a(f,g)}function a(){var h=arguments.length<=0||arguments[0]===undefined?{}:arguments[0],i=arguments[1],j=void 0,k=void 0;// check for format key in rules, first
-if(h.format){k=_format(h.format,i)}// if rule 'required' === false then it's considered 'valid' (we don't validate)
-if(h.require===false){j=true}else{j=_validate(h,i)}if(k){return{format:k,valid:j}}else{return j}}return c},_validate=StringFormatValidation.validate=function(){var a=arguments.length<=0||arguments[0]===undefined?{}:arguments[0],b=arguments[1];if(typeof b==='number'){// coerce to string
-b+=''}// use 'validator' as 'v'
-var c=!0;if(a.type){switch(a.type){case'date':c=(0,_validator.isDate)(b);break;case'email':c=(0,_validator.isEmail)(b);break;case'creditcard':c=(0,_validator.isCreditCard)(b);break;case'phone':try{c=b.match(/\d/g).join('').length===10}catch(e){c=false}break;case'number':c=(0,_validator.isInt)(b);break;}}if(!c){return c}if(a.min||a.max||a.size){var d=a.min||0;var f=a.max||undefined;var g=a.size||undefined;if(g){d=f=g}c=(0,_validator.isLength)(b,{min:d,max:f})}return c},_format=StringFormatValidation.format=(a,b)=>{try{b=b.match(/\w/g).join('')}catch(e){b=''}// use 'string-mask' as 'mask'
-return new Mask(a,{}).apply(b)};/**
+'use strict';
+
+var validator = require('validator');
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+};
+
+var Mask = require('string-mask');
+
+var StringFormatValidation = function StringFormatValidation(rules, val) {
+  var __validArgs = __validateArguments(rules, val);
+  if (__validArgs) {
+    throw new Error(__validArgs);
+  }
+
+  var returnVal = void 0;
+
+  // if val is an obj iterate it's keys and look for matching rules
+  if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object') {
+    returnVal = {};
+    for (var _key in val) {
+      returnVal[_key] = dowork(rules[_key], val[_key]);
+    }
+  } else {
+    returnVal = dowork(rules, val);
+  }
+
+  function dowork() {
+    var rules = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    var val = arguments[1];
+
+    var _valid = void 0;
+    var _formatted = void 0;
+
+    // check for format key in rules, first
+    if (rules.format) {
+      _formatted = _format(rules.format, val);
+    }
+
+    // if rule 'required' === false then it's considered 'valid' (we don't validate)
+    if (rules.require === false) {
+      _valid = true;
+    } else {
+      _valid = _validate(rules, val);
+    }
+
+    if (_formatted) {
+      return {
+        format: _formatted,
+        valid: _valid
+      };
+    } else {
+      return _valid;
+    }
+  }
+
+  return returnVal;
+};
+
+var _validate = StringFormatValidation.validate = function () {
+  var rules = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+  var string = arguments[1];
+
+  if (typeof string === 'number') {
+    // coerce to string
+    string += '';
+  }
+
+  // use 'validator' as 'v'
+  var _valid = true;
+  if (rules.type) {
+    switch (rules.type) {
+      case 'date':
+        _valid = validator.isDate(string);
+        break;
+      case 'email':
+        _valid = validator.isEmail(string);
+        break;
+      case 'creditcard':
+        _valid = validator.isCreditCard(string);
+        break;
+      case 'phone':
+        try {
+          _valid = string.match(/\d/g).join('').length === 10;
+        } catch (e) {
+          _valid = false;
+        }
+        break;
+      case 'number':
+        _valid = validator.isInt(string);
+        break;
+    }
+  }
+
+  if (!_valid) {
+    return _valid;
+  }
+
+  if (rules.min || rules.max || rules.size) {
+    var min = rules.min || 0;
+    var max = rules.max || undefined;
+    var size = rules.size || undefined;
+
+    if (size) {
+      min = max = size;
+    }
+
+    _valid = validator.isLength(string, { min: min, max: max });
+  }
+
+  return _valid;
+};
+
+var _format = StringFormatValidation.format = function (format, string) {
+  try {
+    string = string.match(/\w/g).join('');
+  } catch (e) {
+    string = '';
+  }
+  // use 'string-mask' as 'mask'
+  return new Mask(format, {}).apply(string);
+};
+
+/**
  * Export Our Function
- */module.exports=StringFormatValidation;var __validateArguments=(a,b)=>{var c=null,d='string-format-validation :: argument error - ',f=typeof a==='undefined'?'undefined':_typeof(a),g=typeof b==='undefined'?'undefined':_typeof(b);if(f!=='object'){c=d+'first argument is not an object'}else if(g!=='object'&&g!=='string'&&g!=='number'){c=d+'second argument must be string, number or object map that matches the rules map'}return c===null?false:c};
+ */
+module.exports = StringFormatValidation;
+
+var __validateArguments = function __validateArguments(rules, val) {
+  var invokationError = null;
+  var invokationMsg = 'string-format-validation :: argument error - ';
+
+  var _rules = typeof rules === 'undefined' ? 'undefined' : _typeof(rules);
+  var _val = typeof val === 'undefined' ? 'undefined' : _typeof(val);
+
+  if (_rules !== 'object') {
+    invokationError = invokationMsg + 'first argument is not an object';
+  } else if (_val !== 'object' && _val !== 'string' && _val !== 'number') {
+    invokationError = invokationMsg + 'second argument must be string, number or object map that matches the rules map';
+  }
+
+  return invokationError === null ? false : invokationError;
+};

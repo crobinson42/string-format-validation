@@ -1,3 +1,5 @@
+'use strict'
+
 var assert = require('assert')
 
 const SFV = require('../dist/bundle.js')
