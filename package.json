@@ -29,6 +29,7 @@
     "url": "https://github.com/crobinson42/string-format-validation/issues"
   },
   "devDependencies": {
+    "babel": "^6.5.2",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
