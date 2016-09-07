@@ -2,7 +2,7 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-var _validator = require('validator');
+var validator = require('validator');
 
 var Mask = require('string-mask');
 
@@ -70,13 +70,13 @@ var _validate = StringFormatValidation.validate = function () {
   if (rules.type) {
     switch (rules.type) {
       case 'date':
-        _valid = (0, _validator.isDate)(string);
+        _valid = validator.isDate(string);
         break;
       case 'email':
-        _valid = (0, _validator.isEmail)(string);
+        _valid = validator.isEmail(string);
         break;
       case 'creditcard':
-        _valid = (0, _validator.isCreditCard)(string);
+        _valid = validator.isCreditCard(string);
         break;
       case 'phone':
         try {
@@ -86,7 +86,7 @@ var _validate = StringFormatValidation.validate = function () {
         }
         break;
       case 'number':
-        _valid = (0, _validator.isInt)(string);
+        _valid = validator.isInt(string);
         break;
     }
   }
@@ -104,7 +104,7 @@ var _validate = StringFormatValidation.validate = function () {
       min = max = size;
     }
 
-    _valid = (0, _validator.isLength)(string, { min: min, max: max });
+    _valid = validator.isLength(string, { min: min, max: max });
   }
 
   return _valid;
