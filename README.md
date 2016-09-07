@@ -67,35 +67,6 @@ console.log( StringFormatValidation.validate(validationRules.email, userInput3) 
 
 ```
 
-#### Putting It Together - Validate & Format
-
-```js
-import StringFormatValidation from 'string-format-validation'
-
-const rules = {
-  name: {
-    min: 1,
-    max: 20
-  },
-  email: {
-    type: 'email'
-  },
-  phone: {
-    format: '(###) ### - ####'
-    size: 13 // must include formatting added characters ie: '()' & '-'
-  }
-}
-
-const userInputs = {
-  name: 'cory',
-  email: 'coryrobinson42', // not a valid email
-  phone: '9166163600'
-}
-
-console.log( StringFormatValidation(rules, userInputs) )
-// { name: true, email: false, phone: { valid: true, format: '(916) 616 - 3600'}}
-```
-
 ## Validation
 Available rules: (*Please open an issue to request a specific rule*)
 
@@ -103,22 +74,16 @@ Available rules: (*Please open an issue to request a specific rule*)
 
 `max` {integer} // max length
 
-*Note- to enforce max char and return a value that is limited to the max, ie: let this module do the work of not letting the string be greater than the `max`, use `enforce: true`*
-
-*The response will be an object instead of a boolean validation status*
-
-`enforce` {boolean} // defaults to false
-
 `size` {integer} // exact length
 
 `type`
-- date
-- email
-- phone
-- creditcard
-- number
+  - date
+  - email
+  - phone
+  - creditcard
+  - number
 
-Rules must be in Object structure:
+#### Rules must be in Object structure:
 
 ```js
 {
@@ -157,3 +122,72 @@ Character | Description
 `U` | Any letter (All lower case character will be mapped to uppercase)
 `L` | Any letter (All upper case character will be mapped to lowercase)
 `$` | Escape character, used to escape any of the special formatting characters.
+
+## Putting It Together - Validate & Format
+
+```js
+import StringFormatValidation from 'string-format-validation'
+
+const rules = {
+  name: {
+    min: 1,
+    max: 20
+  },
+  email: {
+    type: 'email'
+  },
+  phone: {
+    format: '(###) ### - ####'
+    size: 13 // must include formatting added characters ie: '()' & '-'
+  }
+}
+
+const userInputs = {
+  name: 'cory',
+  email: 'coryrobinson42', // not a valid email
+  phone: '9166163600'
+}
+
+console.log( StringFormatValidation(rules, userInputs) )
+/* returns:
+  {
+    name: true,
+    email: false,
+    phone: {
+      valid: true,
+      format: '(916) 616 - 3600'
+    }
+  }
+*/
+```
+
+#### Note:
+
+When invoking `StringFormatValidation(rulesMap, userInputMap)` `rulesMap` can be an
+object of keys that contain the rules for the respective key matching up to the key in `userInputMap`, ie:
+
+```js
+const rulesMap = {
+  // this key declares the rules (format/validation) for 'firstname' key in `userInputMap`
+  firstName: {
+    max: 20
+  }
+}
+
+const userInputMap = {
+  // this key string is matched against the rules in `rulesMap` under the same key
+  firstName: 'cory'
+}
+
+StringFormatValidation(rulesMap, userInputMap)
+// returns: { firstName: true } <-- validation
+```
+
+You can also simply pass an Object of validation/format rules as the first argument
+and a string as the second argument, ie:
+
+```js
+StringFormatValidation({ type: phone, format: '(###) ###-####' }, '(916) 61')
+// returns: { valid: false, format: '(916) 61'}
+```
+===========================
