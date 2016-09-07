@@ -2,9 +2,12 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-var validator = require('validator');
+function _interopDefault(ex) {
+  return ex && (typeof ex === 'undefined' ? 'undefined' : _typeof(ex)) === 'object' && 'default' in ex ? ex['default'] : ex;
+}
 
-var Mask = require('string-mask');
+var validator = require('validator');
+var Mask = _interopDefault(require('string-mask'));
 
 var StringFormatValidation = function StringFormatValidation(rules, val) {
   var __validArgs = __validateArguments(rules, val);

@@ -1,5 +1,5 @@
 import { isEmail, isDate, isCreditCard, isInt, isLength } from 'validator'
-const Mask = require('string-mask')
+import Mask from 'string-mask'
 
 const StringFormatValidation = (rules, val) => {
   const __validArgs = __validateArguments(rules, val)
